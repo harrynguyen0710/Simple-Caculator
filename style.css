@@ -15,7 +15,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-#display {
+#display-input {
     width: 100%;
     height: 2.5rem;
     text-align: right;
@@ -48,7 +48,6 @@ button:active {
     background-color: #bbb;
 }
 
-
 #errorPopup {
     display: none;
     position: fixed;
@@ -64,44 +63,44 @@ button:active {
 
 .popup-content {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.2);
     position: relative; 
     animation: scaleIn 0.3s ease; 
 }
 
 .popup-title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #d9534f; 
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .popup-content p {
-    font-size: 16px;
+    font-size: 1rem;
     color: #333;
 }
 
-#close-btn {
+#close-popup-btn {
     border: none;
-    background-color: #d9534f; /* Red background */
+    background-color: #d9534f;
     color: white;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: bold;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 0.625rem;
+    top: 0.625rem;
     cursor: pointer;
-    transition: background-color 0.3s; /* Button hover effect */
+    transition: background-color 0.3s;
 }
 
-#close-btn:hover {
-    background-color: #c9302c; /* Darker red on hover */
+#close-popup-btn:hover {
+    background-color: #c9302c;
 }
 
 @keyframes scaleIn {
