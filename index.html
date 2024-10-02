@@ -7,15 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- set title of the web browser tab when webpage is open -->
-    <title>Calculator</title> 
+  <title>Calculator</title> 
 
-<!--   add style css for the calculator  -->
-    <link rel="stylesheet" href="style.css"> 
+  <!--   add style css for the calculator  -->
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <!-- Main container for the calculator -->
     <div class="calculator"> 
-        
         <!-- Display area for the calculator, disabled to prevent user input -->
         <input type="text" id="display" disabled> 
         
@@ -35,13 +34,34 @@
             <button>-</button> <!-- Button for the subtraction operator -->
             <button>0</button> <!-- Button for the number 0 -->
             <button>.</button> <!-- Button for the decimal point -->
-            <button>=</button> <!-- Button for the equals operator, used to calculate the result -->
+            <button>=</button> <!-- Button for the equals operator -->
             <button>+</button> <!-- Button for the addition operator -->
             <button>C</button> <!-- Button for clearing the display (reset) -->
         </div>
-        
     </div>
-<!--     add calculator logic Javascript -->
+
+
+    <!-- container for the error popup -->
+    <div id="errorPopup" class="popup">
+      
+      <!-- inner content of the popup -->
+      <div class="popup-content">
+         
+        <!-- title of the popup, indicating it is an error -->
+          <span class="popup-title">Error</span>
+          
+          <!-- paragraph containing the error message -->
+          <p>The operation is not appropriate</p>
+          
+          <!-- button to close the popup -->
+          <button id="close-btn">×</button>
+      </div>
+    </div>
+
+  
+
+   
+    <!-- Add calculator logic Javascript -->
     <script src="script.js"></script> 
 </body>
 </html>

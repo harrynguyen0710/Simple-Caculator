@@ -3,6 +3,11 @@ const display = document.getElementById('display');
 // selects all the buttons on the calculator
 const buttons = document.querySelectorAll('button'); 
 
+// selects the error popup
+const errorPopup = document.getElementById('errorPopup');
+// selects close error popup button
+const closePopupBtn = document.getElementById('close-btn');
+
 // array to hold the current expression (numbers and operators)
 let expressions = []; 
 // variable to hold the current number being typed
@@ -22,6 +27,47 @@ function isOperator(value) {
     // returns true if the value is one of the four operators
     return ['+', '-', '*', '/'].includes(value); 
 }
+
+/*
+input: a method
+process: set up the error popup style as none to be hidden because the user want to stop seeing the popup
+ouput: none
+*/
+closePopupBtn.addEventListener('click', () => {
+    // set up the style the element which has its id as "errorPopup" as "none"
+    errorPopup.style.display = 'none';
+
+});
+
+/*
+input: none
+process: to show the popup, set the style to be block and display the popup to the user interface
+output: none
+*/
+function alertError() {
+    // set up the style the element which has its id as "errorPopup" as "block"
+    errorPopup.style.display = 'block';
+}
+
+
+/*
+input: a result after computing the inputed expressions
+process: 
+    - if the result is undefined or is nan, this means, there's something wrong 
+    during computation so return true because it has error.
+    - else return false, meaning that result is a valid value and there's no error.
+output: true or false
+*/
+function hasError(result) {
+    // check result is an error
+    if (result == undefined || isNaN(result)) {
+        return true;
+    }
+    return false;
+}
+
+
+
 
 // loop through each button to add a click event listener
 /*
@@ -103,12 +149,27 @@ buttons.forEach(button => {
                 // reset the expressions array
                 expressions = []; 
             } else {
+                // if user doesn't input any opeation and press '=', print 0 in the interface
+                if (expressions.length == 0) {
+                    // display 0 on the interface and set the current input as 0 for the next operation
+                    currentInput = display.value = 0;
+                } else {
+                    // calculate the result of the expression by calling the calculate method
+                    const result = calculate(expressions); 
+                    
+                    // check if the result can be null  or NaN or undefined, if it is, alert an error
+                    if (hasError(result)) {
+                        // call alert error method
+                        alertError();
+                        // set the current value as " " and display nothing to the user interface.
+                        currentInput = display.value = ""; 
+                    } else {
+                        // update the display and current input with the result
+                        currentInput = display.value = result; 
+                    }
 
-                // calculate the result of the expression by calling the calculate method
-                const result = calculate(expressions); 
-
-                // update the display and current input with the result
-                currentInput = display.value = result; 
+                }
+                
                 
                 // reset the expressions array after the calculation for the next stage
                 expressions = []; 
@@ -182,3 +243,4 @@ const calculate = (expressions) => {
 
     return finalResult; // return the final calculated result
 };
+

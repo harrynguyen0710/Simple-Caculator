@@ -8,34 +8,36 @@ body {
 }
 
 .calculator {
-    border: 0.0625rem solid #333;
-    padding: 1.25rem; 
-    border-radius: 0.625rem; 
+    border: 1px solid #333;
+    padding: 1.25rem;
+    border-radius: 10px;
     background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 #display {
     width: 100%;
-    height: 2.5rem; 
+    height: 2.5rem;
     text-align: right;
-    margin-bottom: 0.625rem; 
+    margin-bottom: 0.625rem;
     font-size: 1.5rem;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.625rem; 
+    gap: 0.625rem;
 }
 
 button {
     width: 100%;
-    height: 3.125rem; 
+    height: 3.125rem;
     font-size: 1.2rem;
     background-color: #ddd;
     border: none;
-    border-radius: 0.3125rem; 
+    border-radius: 0.3125rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -44,4 +46,74 @@ button:hover {
 
 button:active {
     background-color: #bbb;
+}
+
+
+/* #errorPopup {
+    display: none;
+} */
+#errorPopup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease; /* Smooth fade in/out */
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; /* Position for close button */
+    animation: scaleIn 0.3s ease; /* Animation for popup */
+}
+
+.popup-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d9534f; /* Bootstrap danger color */
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 16px;
+    color: #333;
+}
+
+#close-btn {
+    border: none;
+    background-color: #d9534f; /* Red background */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Button hover effect */
+}
+
+#close-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
