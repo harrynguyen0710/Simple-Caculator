@@ -1,4 +1,4 @@
-// array to hold the current expression (numbers and operators)
+// array to hold the current expression (numbers and operators), by default it has a number 0
 let mathExpressions = []; 
 // variable to hold the current number being typed
 let currentInput = ''; 
@@ -86,7 +86,7 @@ buttons.forEach(button => {
         const value = this.innerText; 
 
         // 2. check if the value is a number or a decimal point
-        if (!isNaN(value) || value === ".") {
+        if (!isNaN(value) || (currentInput !== ''  && value === ".")) {
 
             // only allow one decimal point in a number (avoid .9 or .123)
             if (value !== '.' || (value === '.' && !currentInput.includes('.'))) {
@@ -104,8 +104,11 @@ buttons.forEach(button => {
             // 3.1. if there's a number in the current input
             if (currentInput !== '') { 
 
-                // convert it to a number and add it to the math expressions array
-                mathExpressions.push(parseFloat(currentInput)); 
+                // convert it to a float number
+                let parsedValue = parseFloat(currentInput) 
+
+                // add it to the math expressions array
+                mathExpressions.push(parseFloat(parsedValue)); 
 
                 // reset current input for the next value from user
                 currentInput = ''; 
@@ -139,14 +142,14 @@ buttons.forEach(button => {
 
             // 5.1 check whether current input is NaN to avoid pushing invalid value
             if (currentInput !== '') {
-                mathExpressions.push(currentInput);
+                mathExpressions.push(parseFloat(currentInput));
             }
 
             // 5.2 if user doesn't input any opeation and press '=', print 0 in the interface
             if (mathExpressions.length == 0) {
 
                 // display 0 on the interface and set the current input as 0 for the next operation
-                currentInput = displayInput.value = 0;
+                currentInput = displayInput.value = '0';
 
             }
             // 5.3 caluclate to get the end result
@@ -190,6 +193,7 @@ output:
     - a number (float or integer)
 */
 const calculate = (mathExpressions) => {
+
     // 1. array to hold intermediate results (for * and / operations)
     let resultArray = []; 
 
@@ -200,7 +204,7 @@ const calculate = (mathExpressions) => {
         if (mathExpressions[i] === '*') { 
 
             // multiply the last number in resultArray with the next number
-            let product = resultArray.pop() * mathExpressions[i + 1]; 
+            let product = resultArray.pop() * parseFloat(mathExpressions[i + 1]); 
 
             // push the product back to resultArray
             resultArray.push(product); 
