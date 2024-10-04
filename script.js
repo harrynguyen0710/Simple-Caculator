@@ -42,7 +42,7 @@ input: none
 process: to show the popup, set the style to be block and display the popup to the user interface
 output: none
 */
-function alertOperationError() {
+function showOperationError() {
     // set up the style the element which has its id as "errorPopup" as "block"
     errorPopup.style.display = 'block';
 }
@@ -159,7 +159,7 @@ buttons.forEach(button => {
                 if (hasOperationError(result)) {
 
                     // call error operation alert method
-                    alertOperationError();
+                    showOperationError();
 
                     // set the current value as " " and display nothing to the user interface.
                         currentInput = displayInput.value = ""; 
