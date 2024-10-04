@@ -2,8 +2,6 @@
 let mathExpressions = []; 
 // variable to hold the current number being typed
 let currentInput = ''; 
-// placeholder for future operator usage (not used in the current implementation)
-let operator = null;
 
 
 // function to check if a value is an operator
@@ -27,7 +25,7 @@ const errorPopup = document.getElementById('errorPopup');
 
 /*
 input: a method
-process: set up the error popup style as none to be hidden because the user want to stop seeing the popup
+process: hide the error popup
 ouput: none
 */
 closePopupBtn.addEventListener('click', () => {
@@ -39,7 +37,7 @@ closePopupBtn.addEventListener('click', () => {
 
 /*
 input: none
-process: to show the popup, set the style to be block and display the popup to the user interface
+process: display the error popup
 output: none
 */
 function showErrorPopup() {
@@ -51,17 +49,13 @@ function showErrorPopup() {
 /*
 input: a result after computing the inputed math expressions
 process: 
-    - if the result is undefined or is nan, this means, there's something wrong 
-    during computation so return true because it has error.
-    - else return false, meaning that result is a valid value and there's no error.
+    - if the result is undefined or is NaN, return true because it has error.
+    - else return false, because there's no error.
 output: true or false
 */
 function hasOperationError(result) {
     // check result is an error, if has an operation error
-    if (result == undefined || isNaN(result)) {
-        return true;
-    }
-    return false;
+    return result == undefined || isNaN(result);
 }
 
 
@@ -108,7 +102,7 @@ buttons.forEach(button => {
                 let parsedValue = parseFloat(currentInput) 
 
                 // add it to the math expressions array
-                mathExpressions.push(parseFloat(parsedValue)); 
+                mathExpressions.push(parsedValue); 
 
                 // reset current input for the next value from user
                 currentInput = ''; 
@@ -167,18 +161,18 @@ buttons.forEach(button => {
                     // set the current value as " " and display nothing to the user interface.
                         currentInput = displayInput.value = ""; 
 
-                    } else {
-                        // update the display and current input with the result and rounded with the last 3 remainders
-                        currentInput = displayInput.value = result; 
-                    }
+                } else {
+                    
+                    // update the display and current input with the result and rounded with the last 3 remainders
+                    currentInput = displayInput.value = result; 
                 }
+            }
 
                 // reset the math expressions array after the calculation for the next stage
                 mathExpressions = []; 
-            }
         }
+    });
 
-    );
 });
 
 // function to perform the actual calculations
@@ -204,7 +198,7 @@ const calculate = (mathExpressions) => {
         if (mathExpressions[i] === '*') { 
 
             // multiply the last number in resultArray with the next number
-            let product = resultArray.pop() * parseFloat(mathExpressions[i + 1]); 
+            let product = resultArray.pop() * (mathExpressions[i + 1]); 
 
             // push the product back to resultArray
             resultArray.push(product); 
