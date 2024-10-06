@@ -29,7 +29,7 @@ process: hide the error popup
 ouput: none
 */
 closePopupBtn.addEventListener('click', () => {
-    // set up the style the element which has its id as "errorPopup" as "none"
+    // hide the error popup
     errorPopup.style.display = 'none';
 
 });
@@ -41,7 +41,7 @@ process: display the error popup
 output: none
 */
 function showErrorPopup() {
-    // set up the style the element which has its id as "errorPopup" as "block"
+    // display the error popup
     errorPopup.style.display = 'block';
 }
 
@@ -71,7 +71,7 @@ const displayInput = document.getElementById('display-input');
 input: button's value from user
 process:
     - use an array to store all values from users
-    - then use the calculate method to get the result 
+    - then use the calculate method with the mathExpression array as a param to get the result 
 output: none
 */
 buttons.forEach(button => {
